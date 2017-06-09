@@ -7,5 +7,5 @@ This simple script was made to help the Art work team in OSC to put the logo on 
 * Execute the script and input the logo name.
 
 # ToDo
-* [x] Fix a bug which makes the scripts works on landscape pictures only.
+* [] Fix a bug which makes the scripts works on landscape pictures only.
 
