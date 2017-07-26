@@ -8,3 +8,4 @@ This simple script was made to help the Art work team in OSC to put the logo on 
 
 # ToDo
 * [ ] Fix a bug which makes the script works on landscape pictures only.
+* [ ] Edit the script to allow the execution of the script from any directory not the directory of pics.
