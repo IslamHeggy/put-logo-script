@@ -23,6 +23,7 @@ This simple script was made to help the Art work team in OSC to put the logo on 
 	$ ../../Pictures/
 ```
 ### Note:
+
 ##### Do not use path with folder or file name that has spaces
 
 
