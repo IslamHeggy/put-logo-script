@@ -22,7 +22,8 @@ This simple script was made to help the Art work team in OSC to put the logo on 
 	or
 	$ ../../Pictures/
 ```
-## Note:### Do not use path with folder or file name that has spaces
+### Note:
+##### Do not use path with folder or file name that has spaces
 
 
 * and input the logo name.
