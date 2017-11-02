@@ -2,25 +2,42 @@
 
 #This script helps u to put a logo on pictures using imagemagick command line.
 
+if [[ "$1" == "" ]];then
 echo "Note:: To be able to use this script you must download image magick first"
 echo "Type your logo name/path as written(Ex: Photo.png)"
-read -e flogoname 
+read -e flogoname;
+else
+flogoname=$1;
+fi 
+
+if [[ "$2" == "" ]];then
 echo "Enter the postion of the photos"
-read -e pos
+read -e pos;
+else
+pos=$2;
+fi
+
+if [[ "$3" == "" ]];then
 echo "Choose logo position (1,2,3,4):- "
 echo "1-Top Right"
 echo "2-Top Left"
 echo "3-Bottom Right"
 echo "4-Bottom Left"
-read -e input2
+read -e input2;
+else
+input2=$3;
+fi
 #Outout is where the results is going to be generated
-mkdir Output
+if [ ! -d "Output" ]; then
+  mkdir Output
+fi
+
 #array contains the option for the command imagemagick to p 
 e=(NorthEast NorthWest SouthEast SouthWest);
 
 
 
-	for h in  $pos*.*
+	for h in  "$pos"*.*
 	do
 		#differentiate between portrait and landscape photos taken by digital cameras with EXIF in it
 		convert "$h" -auto-orient "$h" 
@@ -37,7 +54,7 @@ e=(NorthEast NorthWest SouthEast SouthWest);
 		slogoname="Output/$(basename $flogoname $ext).png"
 
 		#make the logo's width and hight 20% of the photo's width 'the logo is squared'
-		z=$(echo "$(($pwidth*13/100))");
+		z=$(echo "$(($pwidth*24/100))");
 		float=$z;
 		float+="x";
 		float+=$z;
