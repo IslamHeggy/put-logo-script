@@ -33,4 +33,6 @@ This simple script was made to help the Art work team in OSC to put the logo on 
 * [X] Edit the script to allow the execution of the script from any directory not the directory of pics.
 * [X] resize the logo to fit every image.
 * [X] Solve problem with auto rotate from photos taken by digital cameras.
-* [ ] Solve a problem with paths and files which folder that contains a space in their name.
+* [X] Solve a problem with paths and files which folder that contains a space in their name.
+* [X] Make it usable as Shell Command and to take arguments also
+
