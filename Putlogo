@@ -1,0 +1,72 @@
+#!/bin/bash
+
+#This script helps u to put a logo on pictures using imagemagick command line.
+
+if [[ "$1" == "" ]];then
+echo "Note:: To be able to use this script you must download image magick first"
+echo "Type your logo name/path as written(Ex: Photo.png)"
+read -e flogoname;
+else
+flogoname=$1;
+fi 
+
+if [[ "$2" == "" ]];then
+echo "Enter the postion of the photos"
+read -e pos;
+else
+pos=$2;
+fi
+
+if [[ "$3" == "" ]];then
+echo "Choose logo position (1,2,3,4):- "
+echo "1-Top Right"
+echo "2-Top Left"
+echo "3-Bottom Right"
+echo "4-Bottom Left"
+read -e input2;
+else
+input2=$3;
+fi
+#Outout is where the results is going to be generated
+if [ ! -d "Output" ]; then
+  mkdir Output
+fi
+
+#array contains the option for the command imagemagick to p 
+e=(NorthEast NorthWest SouthEast SouthWest);
+
+
+
+	for h in  "$pos"*.*
+	do
+		#differentiate between portrait and landscape photos taken by digital cameras with EXIF in it
+		convert "$h" -auto-orient "$h" 
+
+		#getting the each photo's width
+		pwidth=$(convert "$h" -print "%w %h\n" /dev/null);
+		pwidth=$(echo "$pwidth" | cut -d ' ' -s -f2);
+
+		#getting the file extinsion
+		ext='.';
+		ext+="$(echo "$flogoname" | rev | cut -d '.' -s -f1 |rev)";
+
+		#the new resulting photo's postion	
+		slogoname="Output/$(basename $flogoname $ext).png"
+
+		#make the logo's width and hight 20% of the photo's width 'the logo is squared'
+		z=$(echo "$(($pwidth*24/100))");
+		float=$z;
+		float+="x";
+		float+=$z;
+
+		#resizing the logo to fit the photo
+		convert -background none "$flogoname" -resize "$float" "$slogoname" ;
+		
+		i=$(echo "$h" |rev| cut -d / -s -f 1|rev);
+		echo " Processing " $i
+		#putting the logo on the photo
+		composite -background none -gravity ${e[(($input2-1))]} "$slogoname" "$h" ./Output/"output$i" 
+		
+	done
+
+echo "You are done ,Thank you."
