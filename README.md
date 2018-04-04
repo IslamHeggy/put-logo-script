@@ -35,4 +35,4 @@ This simple script was made to help the Art work team in OSC to put the logo on 
 * [X] Solve problem with auto rotate from photos taken by digital cameras.
 * [X] Solve a problem with paths and files which folder that contains a space in their name.
 * [X] Make it usable as Shell Command and to take arguments also
-
+* [ ] Solve a Problem with selfies 
