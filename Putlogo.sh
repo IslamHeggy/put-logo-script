@@ -3,7 +3,7 @@
 #This script helps u to put a logo on pictures using imagemagick.
 
 #Checks that imagemagick is installed.
-if [[ `composite --version | grep "not found"` != "" ]] 
+if [[ $(composite --version) == "" ]] 
 then
 	echo "You don't have imagemagick installed, please install it before trying to run this script."
 fi
