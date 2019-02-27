@@ -6,6 +6,7 @@
 if [[ $(composite --version) == "" ]] 
 then
 	echo "You don't have imagemagick installed, please install it before trying to run this script."
+	exit
 fi
 
 #Logo path
