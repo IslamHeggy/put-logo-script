@@ -19,7 +19,20 @@ $ sudo pacman -Sy imagemagick zenity
 ```
 
 
-# How to use from the CLI.
+# How to use
+
+
+## From the GUI
+* Execute the script
+```
+	$ ./PutlogoGUI.sh
+```
+
+   Or just double click on the file.
+
+* Follow the on-screen dialogs to get your logo put on the pictures.
+
+## From the CLI
 * Execute the script
 ```
 	$ ./Putlogo
@@ -45,18 +58,8 @@ Or you can pass arguments to the script
 	$ ../../Pictures/
 ```
 
-# How to use the GUI.
-* Execute the script
-```
-	$ ./PutlogoGUI.sh
-```
-
-   Or just double click on the file.
-
-* Follow the on-screen dialogs to get your logo put on the pictures.
-
 ### Note:
-#### Do not use path with folder or file name that has spaces, this also applies to the GUI.
+#### Do not use a folder or a file that has a path containing a space. This also applies to the GUI.
 
 # ToDo
 * [X] Fix a bug which makes the script works on landscape pictures only.
