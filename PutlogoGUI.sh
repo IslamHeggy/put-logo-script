@@ -29,11 +29,6 @@ then
         flogoname=`zenity --title "Please choose the file for the logo" --file-selection  --filename /home/$USER/ 2>&1`;
         case $? in
                 0)
-                    if [ -d $flogoname ]
-                    then 
-                        echo "Choose a file, not a directory."
-                        continue;
-                    fi
                     echo "$flogoname chosen as logo."
                     break;;
                 1)
