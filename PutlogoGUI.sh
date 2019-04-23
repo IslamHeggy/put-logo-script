@@ -1,17 +1,24 @@
 #!/bin/bash
 
-#This script helps u to put a logo on pictures using imagemagick.
-
+#This script helps u to put a logo on pictures using imagemagick and Zenity.
+imagemagickInstalled=true
+zenityInstalled=true
 #Checks that imagemagick is installed.
-if ! [ -x $(command -v composite) ] 
+if ! [ -x "$(command -v composite)" ] 
 then
 	echo "You don't have imagemagick installed, please install it before trying to run this script."
-	exit
+	imagemagickInstalled=false
 fi
-
-if ! [ -x  $(command -v zenity) ]
+#Checks that zenity is installed.
+if ! [ -x  "$(command -v zenity)" ]
 then
 	echo "Zenity isn't installed, please install it before trying to run this script."
+    zenityInstalled=false
+fi
+
+#Exits if either of them aren't installed.
+if ! [[ $imagemagickInstalled == true && $zenityInstalled == true ]]
+then
     exit
 fi
 #Logo path
