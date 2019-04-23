@@ -3,15 +3,15 @@
 #This script helps u to put a logo on pictures using imagemagick.
 
 #Checks that imagemagick is installed.
-if [[ $(composite --version) == "" ]] 
+if ! [ -x $(command -v composite) ] 
 then
 	echo "You don't have imagemagick installed, please install it before trying to run this script."
 	exit
 fi
-XDVersion=$(Xdialog --version 2>&1)
-if [[ $XDVersion == "" ]]
+
+if ! [ -x  $(command -v zenity) ]
 then
-	echo "Xdialog isn't installed, please install it before trying to run this script."
+	echo "Zenity isn't installed, please install it before trying to run this script."
     exit
 fi
 #Logo path
@@ -19,7 +19,7 @@ if [[ "$1" == "" ]]
 then
     while [[ 1 ]]
     do
-        flogoname=`Xdialog --title "Please choose the file for the logo" --fselect /home/$USER/ 0 0 2>&1`;
+        flogoname=`zenity --title "Please choose the file for the logo" --file-selection  --filename /home/$USER/ 2>&1`;
         case $? in
                 0)
                     if [ -d $flogoname ]
@@ -30,8 +30,6 @@ then
                     echo "$flogoname chosen as logo."
                     break;;
                 1)
-                    echo "Cancel pressed, please choose a logo.";;
-                255)
                     echo "Box closed."
                     exit;;
         esac
@@ -45,15 +43,13 @@ if [[ "$2" == "" ]]
 then
     while [[ 1 ]]
     do
-        picsPath=`Xdialog --title "Please choose the directory for the pics." --dselect /home/$USER/ 0 0 2>&1`;
+        picsPath=`zenity --title "Please choose the directory for the pics." --file-selection --directory --filename /home/$USER/ 2>&1`;
         case $? in
                 0)
                     picsPath=$picsPath"/"
                     echo "$picsPath chosen as directory for pics."
                     break;;
                 1)
-                    echo "Cancel pressed, please choose a directory.";;
-                255)
                     echo "Box closed."
                     exit;;
         esac
@@ -69,12 +65,16 @@ if [[ "$3" == "" ]]
 then
     while [[ 1 ]]
     do
-        corner=$(Xdialog --title "Logo Position" \
-            --radiolist "Choose the corner for the logo" 17 46 4 \
-            "1" "Top Right" ON \
-            "2" "Top Left" off \
-            "3" "Bottom Right" off \
-            "4" "Bottom Left" off 2>&1)
+        corner=$(zenity --title "Logo Location" \
+            --text "Choose the corner for the logo" \
+            --list --radiolist \
+            --column=" " \
+            --column="Number" \
+            --column="Location" \
+            1 "1" "Top Right"  \
+            2 "2" "Top Left"  \
+            3 "3" "Bottom Right"  \
+            4 "4" "Bottom Left"  2>&1)
         
         if [[ $corner == "" ]]
         then
@@ -93,9 +93,9 @@ if [[ "$4" == "" ]]
 then
     while [[ 1 ]]
     do
-        size=$(Xdialog 2>&1 --title "Logo Size" \
-            --rangebox "Choose the size of the logo" 10 40 1 100 20)
-        echo $size
+        size=$(zenity 2>&1 --scale --title="Logo Size" \
+            --text="Choose the size of the logo" --min-value=1 \
+            --max-value=100 --value=20)
         if [[ $size == "" ]]
         then
             exit
