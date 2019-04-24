@@ -26,7 +26,7 @@ if [[ "$1" == "" ]]
 then
     while [[ 1 ]]
     do
-        flogoname=`zenity --title "Please choose the file for the logo" --file-selection  --filename /home/$USER/ 2>&1`;
+        flogoname=`zenity --title "Please choose the file for the logo" --file-selection  --filename /home/$USER/ >&1`;
         case $? in
                 0)
                     echo "$flogoname chosen as logo."
@@ -45,7 +45,7 @@ if [[ "$2" == "" ]]
 then
     while [[ 1 ]]
     do
-        picsPath=`zenity --title "Please choose the directory for the pics." --file-selection --directory --filename /home/$USER/ 2>&1`;
+        picsPath=`zenity --title "Please choose the directory for the pics." --file-selection --directory --filename /home/$USER/ >&1`;
         case $? in
                 0)
                     picsPath=$picsPath"/"
@@ -76,7 +76,7 @@ then
             1 "1" "Top Right"  \
             2 "2" "Top Left"  \
             3 "3" "Bottom Right"  \
-            4 "4" "Bottom Left"  2>&1)
+            4 "4" "Bottom Left"  >&1)
         
         if [[ $corner == "" ]]
         then
@@ -95,7 +95,7 @@ if [[ "$4" == "" ]]
 then
     while [[ 1 ]]
     do
-        size=$(zenity 2>&1 --scale --title="Logo Size" \
+        size=$(zenity >&1 --scale --title="Logo Size" \
             --text="Choose the size of the logo" --min-value=1 \
             --max-value=100 --value=20)
         if [[ $size == "" ]]
